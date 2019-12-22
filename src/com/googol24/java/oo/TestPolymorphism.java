@@ -26,16 +26,30 @@ public class TestPolymorphism {
     }
 }
 
-class MyAnimal {
+/**
+ * abstract
+ *
+ * 用abstract关键字来修饰一个类时，这个类叫做抽象类；用abstract关键字来修饰一个方法时，这个方法叫抽象方法(相当于c++的虚函数)
+ * 含有抽象方法的类必须被声明为抽象类，抽象类必须被继承，抽象方法必须被重写
+ *      -> 可以在子类重写，或者子类的子类重写(此时子类也必须继承该抽象方法，因而子类也是抽象类)
+ * 抽象类不能被实例化
+ * 抽象方法只需声明，而无需实现
+ */
+//class MyAnimal { // 第一版
+abstract class MyAnimal {// 第二版
     private String name;
 
     MyAnimal(String name) {
         this.name = name;
     }
 
-    public void enjoy() {
+    // 第一版
+    /*public void enjoy() {
         System.out.println("叫声......");
-    }
+    }*/
+
+    // 抽象方法 第二版(enjoy方法由于其实际业务意义，只需要声明，没有实现的必要)
+    public abstract void enjoy();
 }
 
 class MyCat extends MyAnimal {
