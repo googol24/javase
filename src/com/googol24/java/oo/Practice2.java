@@ -39,6 +39,24 @@ class Stu extends People {
     }
 }
 
+class Teacher extends People {
+    private String capital;
+
+    Teacher(String name, String capital) {
+        this(name, "Beijing", capital);
+    }
+
+    Teacher(String n, String l, String c) {
+        super(n, l);
+        this.capital = c;
+    }
+
+    @Override
+    public String info() {
+        return super.info() + ", Capital:" + this.capital;
+    }
+}
+
 public class Practice2 {
 
     public static void main(String args[]) {
@@ -52,5 +70,8 @@ public class Practice2 {
         System.out.println(p2.info());
         System.out.println(s1.info());
         System.out.println(s2.info());
+
+        Teacher t1 = new Teacher("E", "Professor");
+        System.out.println(t1.info());
     }
 }
