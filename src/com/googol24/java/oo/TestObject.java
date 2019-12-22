@@ -26,6 +26,8 @@ public class TestObject { // 等价于public class TestObject extends Object
 
         String s1 = "hello";
         String s2 = "hello";
+//        s1 = new String("hello");
+//        s2 = new String("hello");
         System.out.println(s1 == s2);
         System.out.println(s1.equals(s2));
     }
