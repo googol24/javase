@@ -29,7 +29,7 @@ class TF {
 }
 
 class SubTF extends TF {
-//    public void m() {// final类型的方法不能被重写
+//    public void m() {// error, final类型的方法不能被重写
 //
 //    }
 }
