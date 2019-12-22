@@ -58,11 +58,7 @@ class Cat {
             if (obj instanceof Cat) {
 //                return (this.color == ((Cat) obj).color && this.height == ((Cat) obj).height && this.weight == ((Cat) obj).weight);
                 Cat c = (Cat)obj;
-                if (this.color == c.color && this.height == c.height && this.weight == c.weight) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return  (this.color == c.color && this.height == c.height && this.weight == c.weight);
             } else {
                 return false;
             }
