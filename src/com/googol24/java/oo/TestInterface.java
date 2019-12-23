@@ -87,7 +87,7 @@ class StuTeacher implements Singer, Painter {
 public class TestInterface {
     public static void main(String[] args) {
         Singer s1 = new Stud("le");
-        // 注意：s1作为Singer类型的引用，只能访问Stud的sing()和sleep()方法，以下同理
+        // 注意：s1作为Singer接口类型的引用，只能访问Stud的sing()和sleep()方法，以下同理
         s1.sing();s1.sleep();
 //        s1.study();// compiled error
 
