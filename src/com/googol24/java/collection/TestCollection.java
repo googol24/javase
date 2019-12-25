@@ -16,6 +16,14 @@ import java.util.*;
  *      -> Map接口 - 定义了存储”键值映射对“的方法
  *            -> 其实现类有HashMap、TreeMap等
  *
+ *  容器类对象在调用remove、contains 等方法时需要比较对象是否相等，这会涉及到对象类型的
+ *  equals 方法和 hashCode 方法；
+ *  对于自定义的(引用)类型，需要重写equals方法和hashCode方法以实现自定义对象的相等规则（重写equals方法必须重写hashCode方法）
+ *
+ *  hashCode()返回对象的散列码，是为了更好地支持基于哈希机制的Java集合类，例如HashTable HashMap HashSet等，一般用于键值/索引
+ *  为啥重写equals的时候必须重写hashCode? 因为有一个规则：如果两个对象equals，那么它们的hashCode也一定相同。也即不存在两个hashCode不同的对象是equals的
+ *
+ *
  */
 public class TestCollection {
     public static void main(String args[]) {
@@ -53,9 +61,25 @@ public class TestCollection {
             }
         }
         */
+
+        Collection c2 = new HashSet();
+        c2.add("hello");
+        c2.add(name2);
+        c2.add(new Integer(100));
+        System.out.println(c2);
+
+        // 会去除hello元素，因为会在c2中遍历有没有和"hello"字符串equals的元素，有则去除
+        c2.remove("hello");
+        System.out.println(c2);
+
+        // 会去除100这个元素，因为Integer类重写了equals()方法以及hashCode()方法
+        c2.remove(new Integer(100));
+        System.out.println(c2);
+
+        // 如果Name类没有重写equals()以及hashCode()两个自定义对象相等规则的方法，则不会去除该元素
+        System.out.println(c2.remove(new Name("Bob", "Steven")));
+        System.out.println(c2);
     }
-
-
 }
 
 class Name {
@@ -85,5 +109,20 @@ class Name {
     @Override
     public String toString() {
         return this.firstName + " " + this.lastName;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Name) {
+            return this.firstName.equals(((Name) obj).firstName) && this.lastName.equals(((Name) obj).lastName);
+        }
+
+        return super.equals(obj);// return false
+    }
+
+    @Override
+    public int hashCode() {
+        // String类重写了hashCode(),两个相等的字符串，它们的hashCode相等
+        return this.firstName.hashCode();
     }
 }

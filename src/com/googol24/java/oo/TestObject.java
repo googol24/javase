@@ -15,7 +15,7 @@ public class TestObject { // 等价于public class TestObject extends Object
         System.out.println(d2);
 
         // equals : 判断对象是否相等的方法
-        // equals方法必须具有自反性、传递性、对称性以及持久性
+        // equals方法必须具有自反性、传递性、对称性以及一致性
         // Object类中，当且仅当两个引用非空且指向同一个对象的时候，才会返回true，即 x.equals(y) <=> x == y
         Cat c1 = new Cat(1, 2, 3);
         Cat c2 = new Cat(1, 2, 3);
