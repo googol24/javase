@@ -77,4 +77,23 @@ class Date {
     public String toString() {
         return this.year + "-" + this.month + "-" + this.day;
     }
+
+    // 当前对象和date对象作比较
+    public int compare(Date date) {
+        if (this.year > date.year) {
+            return 1;
+        } else if (this.year < date.year) {
+            return -1;
+        } else if (this.month > date.month) {
+            return 1;
+        } else if (this.month < date.month) {
+            return -1;
+        } else if (this.day > date.day) {
+            return 1;
+        } else if (this.day < date.day) {
+            return -1;
+        }
+
+        return 0;
+    }
 }
