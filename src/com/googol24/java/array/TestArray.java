@@ -17,6 +17,16 @@ package com.googol24.java.array;
  * 数组元素的引用：
  * -> 引用方式：arrayName[index]，index也可以为表达式，index取值范围为0 ~ arrayName.length-1
  * -> 数组对象的 length 属性的值为数组的长度（元素个数）
+ *
+ * 二维数组：可以看成以数组为元素的数组
+ * -> Java中多维数组的声明和初始化应该按照从高维到低维的顺序进行
+ * -> 声明数组的时候不需要指定维数，只需要在初始化的时候指定即可
+ *
+ * 数组的拷贝
+ * -> 使用java.lang.System类的静态方法 arraycopy，拷贝做的是赋值操作（注意区分引用类型和值类型）
+ * -> public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
+ * -> 如果源数据数目超过目标数组的边界会抛出异常IndexOutOfBoundException
+ *
  */
 public class TestArray {
     public static void main(String[] args) {
@@ -61,6 +71,54 @@ public class TestArray {
         Date[] dates3 = new Date[3];
         System.out.println("c[3]:" + c[3]);
         System.out.println("date3[2]:" + dates3[2]);
+
+        // 多维数组
+        // 第一维为3，第二维未指定（可以为任意数）
+        int[][] a2 = new int[3][];
+        a2[0] = new int[2];
+        a2[1] = new int[4];
+        a2[2] = new int[3];
+
+        int[][] a3 = {{1, 2}, {3, 5, 9, 4}, {7, 7, 5}};
+
+        // 第一维为3，第二维为5，相当于3*5的表格
+        int[][] a4 = new int[3][5];
+
+        for (int i = 0; i < a3.length; i++) {
+            for (int j = 0; j < a3[i].length; j++) {
+                System.out.print("a3[" + i + "][" + j + "] = " + a3[i][j] + ", ");
+            }
+            System.out.println();
+        }
+
+        // arrayCopy
+        String[] strArr = {"Microsoft", "IBM", "Sun", "Oracle", "apple"};
+        String[] strArrBak = new String[6];
+        System.arraycopy(strArr, 0, strArrBak, 0, s.length);
+        for (String s1 : strArrBak) {
+            System.out.print(s1 + " ");
+        }
+        System.out.println();
+
+        int[][] intArr = {{1, 2}, {3, 6, 9, 8}, {5, 0, 4}};
+        int[][] intArrBak = new int[3][];
+        System.arraycopy(intArr, 0, intArrBak, 0, intArr.length);
+        for (int[] arr : intArrBak) {
+            for (int i : arr) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+
+        // 修改了目标数组的引用，原数组也会被修改
+        intArrBak[2][1] = 100;
+
+        for (int[] arr : intArr) {
+            for (int i : arr) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
     }
 }
 
@@ -79,7 +137,7 @@ class Date {
     }
 
     // 当前对象和date对象作比较
-    public int compare(Date date) {
+    int compare(Date date) {
         if (this.year > date.year) {
             return 1;
         } else if (this.year < date.year) {
