@@ -16,6 +16,17 @@ import java.util.Iterator;
  *      -> Object next(); 返回游标右边的元素并将游标移动到下一个位置
  *      -> void move(); 删除游标左边的元素，在执行完next()操作后该操作只能执行一次
  *          -> Iterator对象的remove()方法是在迭代过程中删除元素的唯一的安全方法，如果使用容器对象的remove()方法可能会产生异常
+ *
+ * -> 增强的for循环(foreach):JDK 1.5新增，对于遍历Array或者Collection的时候相当简便
+ *      for (Type element : collection) {
+ *          // code
+ *      }
+ *      -> 缺陷：
+ *          对于数组，不能方便地访问下标值；
+ *          对于集合，和使用Iterator相比，不能方便地删除集合中的内容（其内部实现调用的仍然是Iterator）
+ *      -> 适用场景：
+ *          简单遍历并读出其中的内容，其余场景不建议使用
+ *
  */
 public class TestIterator {
     public static void main(String[] args) {
