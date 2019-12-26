@@ -16,7 +16,7 @@ import java.util.*;
  *      -> Map接口 - 定义了存储”键值映射对“的方法
  *            -> 其实现类有HashMap、TreeMap等
  *
- *  容器类对象在调用remove、contains 等方法时需要比较对象是否相等，这会涉及到对象类型的
+ *  容器类对象在调用remove、contains 等方法时需要比较对象是否相等（重复），这会涉及到对象类型的
  *  equals 方法和 hashCode 方法；
  *  对于自定义的(引用)类型，需要重写equals方法和hashCode方法以实现自定义对象的相等规则（重写equals方法必须重写hashCode方法）
  *
