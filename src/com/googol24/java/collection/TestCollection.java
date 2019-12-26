@@ -3,7 +3,7 @@ package com.googol24.java.collection;
 import java.util.*;
 
 /**
- * 容器：java api提供的一系列类的实例，用于在程序中存放对象(容器的动态存储比数组更方便)
+ * 容器：java api提供的一系列类的实例，用于在程序中存放对象(数组也是一种特殊的容器，一般容器的动态存储比数组更方便)
  * 容器主要包括 Collection 和 Map 两种，Collection 存储着对象的集合，而 Map 存储着键值对（两个对象）的映射表。
  *
  *      -> Collection接口 - 定义了存取一组对象的方法，其子接口Set和List分别定义了自己的存储方式
@@ -20,8 +20,9 @@ import java.util.*;
  *  equals 方法和 hashCode 方法；
  *  对于自定义的(引用)类型，需要重写equals方法和hashCode方法以实现自定义对象的相等规则（重写equals方法必须重写hashCode方法）
  *
- *  hashCode()返回对象的散列码，是为了更好地支持基于哈希机制的Java集合类，例如HashTable HashMap HashSet等，一般用于键值/索引
- *  为啥重写equals的时候必须重写hashCode? 因为有一个规则：如果两个对象equals，那么它们的hashCode也一定相同。也即不存在两个hashCode不同的对象是equals的
+ *  hashCode()返回对象的散列码，是为了更好地支持基于哈希机制的Java集合类，例如HashTable HashMap HashSet等，一般对象作为键值/索引时会用到它
+ *  为啥重写equals的时候必须重写hashCode?
+ *  因为有一个规则：如果两个对象equals，那么它们的hashCode也一定相同。也即不存在两个hashCode不同的对象是equals的
  *
  *
  */
