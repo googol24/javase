@@ -30,6 +30,20 @@ public class TestComparable {
         Collections.sort(list);
 
         System.out.println(list);
+
+        // Comparable接口支持泛型
+        System.out.println("使用泛型：");
+        List<MyNameGeneric> genericList = new LinkedList<>();
+        genericList.add(new MyNameGeneric("Cook", "Tim"));
+        genericList.add(new MyNameGeneric("Candy", "Steven"));
+        genericList.add(new MyNameGeneric("Alice", "Kafka"));
+        genericList.add(new MyNameGeneric("Bob", "Steven"));
+
+        System.out.println(genericList);
+
+        Collections.sort(genericList);
+
+        System.out.println(genericList);
     }
 }
 
@@ -91,5 +105,44 @@ class MyName implements Comparable {
             return len1 - len2;
         }
         */
+    }
+}
+
+class MyNameGeneric implements Comparable<MyNameGeneric> {
+    private String firstName, lastName;
+
+    public MyNameGeneric(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return this.firstName + " " + this.lastName;
+    }
+
+    @Override
+    public int compareTo(MyNameGeneric obj) {
+
+        // 借助了String类的compareTo方法，先按照姓排列，姓相同的再按照名字排列
+        int lastComp = this.lastName.compareTo(obj.lastName);
+
+        return lastComp != 0 ? lastComp : this.firstName.compareTo(obj.firstName);
     }
 }
