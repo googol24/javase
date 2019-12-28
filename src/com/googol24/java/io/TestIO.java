@@ -70,6 +70,18 @@ import java.io.*;
  *      Memory Array      CharArrayReader/CharArrayWriter     ByteArrayInputStream/ByteArrayOutputStream
  *      Memory String     StringReader/StringWriter
  *      Pipe（管道）        PipedReader/PipedWriter             PipedInputStream/PipedOutputStream
+ *
+ *  常见的处理流
+ *
+ *      类型                      字符流                                 字节流
+ *  Buffering（缓冲）       BufferedReader/BufferWriter        BufferInputStream/BufferedOutputStream
+ *  Filtering               FilterReader/FilterWriter        FilterInputStream/FilterOutPutStream
+ *  字符字节之间的转换    InputStreamReader/OutputStreamWriter
+ *  对象序列化                                                 ObjectInputStream/ObjectOutputStream
+ *  Data Conversion                                          DataInputStream/DataOutputStream
+ *  Counting                 LineNumberReader                LineNumberInputStream
+ *  Peeking ahead            PushBackReader                  PushBackInputStream
+ *  Printing                 PrintWriter                     PrintStream
  */
 public class TestIO {
 

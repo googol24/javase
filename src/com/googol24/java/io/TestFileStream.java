@@ -7,11 +7,14 @@ import java.io.*;
  */
 public class TestFileStream {
     public static void main(String[] args) {
+        // FileInputStream
         int b = 0;
-        FileInputStream in = null;
+//        FileInputStream in = null;
+        FileReader reader = null;
 
         try {
-            in = new FileInputStream("D:\\Projects\\Java\\javase\\src\\com\\googol24\\java\\io\\TestFileStream.java");
+//            in = new FileInputStream("D:\\Projects\\Java\\javase\\src\\com\\googol24\\java\\io\\TestFileStream.java");
+            reader = new FileReader("D:\\Projects\\Java\\javase\\src\\com\\googol24\\java\\io\\TestFileStream.java");
         } catch (FileNotFoundException e) {
             System.out.println("找不到文件");
             System.exit(-1);
@@ -21,13 +24,14 @@ public class TestFileStream {
             long number = 0;
 
             // 按照字节读取全部文件
-            while ((b = in.read()) != -1) {
+            while ((b = reader.read()) != -1) {
                 // 把一个字节强制转换成字符
                 System.out.print((char)b);
                 number++;
             }
 
-            in.close();
+//            in.close();
+            reader.close();
 
             System.out.println();
 
@@ -38,6 +42,7 @@ public class TestFileStream {
         }
 
 
+        // FileOutputStream
         int bit = 0;
         FileInputStream fin = null;
         FileOutputStream fout = null;
@@ -51,6 +56,8 @@ public class TestFileStream {
             while ((bit = fin.read()) != -1) {
                 fout.write(bit);
             }
+
+            fout.flush();
 
             System.out.println("文件已复制！");
 

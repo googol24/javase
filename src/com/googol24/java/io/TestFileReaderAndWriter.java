@@ -30,6 +30,8 @@ public class TestFileReaderAndWriter {
             for (int i = 0; i < 50000; i++) {
                 fw.write(i);
             }
+
+            fw.flush();
         } catch (IOException e) {
             System.out.println("文件写入异常！");
             System.exit(-103);
