@@ -63,6 +63,13 @@ import java.io.*;
  *          -> 将一个字符串中的字符写入到输出流，实际上调用了String类的toCharArray()把String转换为char[]
  *              void write(String string) throws IOException
  *
+ *  常见的节点流
+ *
+ *      类型                      字符流                                 字节流
+ *      File（文件）        FileReader/FileWriter               FileInputStream/FileOutputStream
+ *      Memory Array      CharArrayReader/CharArrayWriter     ByteArrayInputStream/ByteArrayOutputStream
+ *      Memory String     StringReader/StringWriter
+ *      Pipe（管道）        PipedReader/PipedWriter             PipedInputStream/PipedOutputStream
  */
 public class TestIO {
 
