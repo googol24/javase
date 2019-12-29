@@ -34,7 +34,7 @@ public class TestTransformIO {
 
             // InputStreamReader
             InputStreamReader isr = new InputStreamReader(
-                    // System.in是标准的输入，阻塞式
+                    // System.in是标准的输入，readLine会阻塞
                     System.in
             );
             BufferedReader br = new BufferedReader(isr);
