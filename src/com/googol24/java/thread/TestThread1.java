@@ -18,10 +18,10 @@ package com.googol24.java.thread;
  *      -> VM启动的时候会有一个main方法定义的线程（主线程）
  *      -> 可以通过创建Thread的实例来创建新的线程
  *      -> 每个线程都是通过某个特定的Thread对象所对应的run方法来完成其操作的，方法run()称为线程体，也即线程执行的业务逻辑
- *      -> 通过调用Thread类实例的start()方法来启动一个线程，从而线程开始执行
+ *      -> 通过调用Thread类实例的start()方法来启动一个线程，会通知CPU一个新的线程需要执行，从而线程获得CPU时间片开始执行
  *
- *  线程的创建和启动：Java中有两种方法创建一个新的线程
- *      -> 第一种：定义线程类实现Runnable接口
+ * 线程的创建和启动：Java中有两种方法创建一个新的线程
+ *      -> 第一种：定义线程类实现Runnable接口（推荐使用，更加灵活，这样还可以继承其他类）
  *               Thread myThread = new Thread(target) // target为Runnable接口类型
  *               Runnable中只有一个run()方法，用以定义线程运行体
  *               使用Runnable接口可以为多个线程提供共享数据
@@ -36,6 +36,16 @@ package com.googol24.java.thread;
  *               }
  *               然后生成该类的对象：MyThread t = new MyThread(...)
  *
+ *  线程状态切换：创建->就绪<-->运行->终止 运行<-->阻塞<-->就绪
+ *
+ *  线程控制基本方法：
+ *          isAlive() 线程是否还“活着”（就绪或运行状态）
+ *          getPriority()/setPriority() 获得/设置线程的优先级数值
+ *          Thread.sleep() 将当前线程睡眠指定的毫秒数
+ *          join() 调用某个线程的该方法，将当前线程与该线程合并，即等待该线程结束，再恢复当前线程运行
+ *          yield() 让出CPU，当前线程进入就绪队列等待调度
+ *          wait() 当前线程进入对象的wait pool
+ *          notify()/notifyAll() 唤醒对象wait poll中的一个/所有等待线程
  *
  */
 public class TestThread1 {
@@ -46,12 +56,17 @@ public class TestThread1 {
 //        // 注意：直接调用t的run方法，不是启动线程，而是一个普通的方法调用
 //        t.run();
 
-        // 启用线程
+        // 启动线程，线程开始执行
         t.start();
+
+        // 创建线程的第二种方式：继承Thread类
+        Runner2 runner2 = new Runner2();
+        // 线程启动
+        runner2.start();
 
         // main线程
         for (int i = 0; i < 100; i++) {
-            System.out.println("Main Thread: " + i);
+            System.out.println("Main Thread: ----------------------" + i);
         }
     }
 }
@@ -64,6 +79,14 @@ class Runner1 implements Runnable {
     public void run() {
         for (int i = 0; i < 100; i++) {
             System.out.println("Runner1: " + i);
+        }
+    }
+}
+
+class Runner2 extends Thread {
+    public void run() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println("Runner2: " + i);
         }
     }
 }
