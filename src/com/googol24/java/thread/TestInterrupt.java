@@ -33,6 +33,8 @@ public class TestInterrupt {
 
         // 主线程main调用子线程的interrupt()方法打断子线程
         thread.interrupt();
+
+        // 现实中应该使用这种方式去停止线程
 //        myThread.setFlag(false);
     }
 }
