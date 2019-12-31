@@ -6,6 +6,11 @@ package com.googol24.java.thread;
  * Object.wait()      - 挂起一个线程
  * Object.notify()    - 唤醒线程（唤醒正在此对象的监视器上等待的一个线程）
  * Object.notifyAll() - 唤醒线程（唤醒正在此对象的监视器上等待的所有线程）
+ *
+ *      wait()和sleep()的区别：
+ *          -> wait()是Object类的成员方法，sleep()是Thread类的静态成员方法
+ *          -> 在调用某个对象的wait()之前必须确保以及锁定了该对象
+ *          -> sleep()的时候会占有对象锁，wait()的时候会释放正占有的对象锁
  */
 public class TestProducerConsumer {
     public static void main(String[] args) {
@@ -44,7 +49,7 @@ class Pool {
     private Food[] foods;
 
     // 栈顶指针
-    private int topIndex;
+    private int topIndex = 0;
 
     Pool(int size) {
         this.size = size;
@@ -57,6 +62,7 @@ class Pool {
             try {
                 // 当缓冲区满时，缓冲区调用wait()方法，使得生产者释放锁，当前线程阻塞
                 // 直到某个其他线程在同一个对象上调用notify() 或notifyAll()，该线程才会进入就绪状态
+                System.out.println("容器满了，生产者等待");
                 this.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -78,6 +84,7 @@ class Pool {
             try {
                 // 缓冲区空时，缓冲区调用wait()方法，使得消费者释放锁，当前线程阻塞
                 // 直到某个其他线程在同一个对象上调用notify() 或notifyAll()，该线程才会进入就绪状态
+                System.out.println("容器已空，消费者等待");
                 this.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -112,7 +119,7 @@ class Producer implements Runnable {
             System.out.println("生产了" + food);
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
