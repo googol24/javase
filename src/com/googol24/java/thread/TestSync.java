@@ -10,7 +10,7 @@ package com.googol24.java.thread;
  * 当synchronized修饰某个方法的时候，某个线程在执行这个方法体时，其他线程还是可以访问其他未锁定的方法的
  *      -> 注意：synchronized修饰方法时锁定的是调用该方法的对象（其他线程调用该对象的任何同步方法的时候都必须等待这个锁的释放）
  *              即如果一个对象中有两个方法同时被synchronized，则同一个对象，调用这两个方法时，同一时刻只能执行一个
- *      -> 注意：调用synchronized方法的对象可以同时调用未被synchronized修饰的方法
+ *      -> 注意：调用synchronized方法的对象可以同时调用未被synchronized修饰的方法（调用非同步方法不影响对象锁定）
  */
 public class TestSync implements Runnable {
     private Timer timer = new Timer();
