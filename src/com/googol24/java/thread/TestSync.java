@@ -2,6 +2,12 @@ package com.googol24.java.thread;
 
 /**
  * 线程同步
+ *
+ * 在Java中，引入了对象互斥锁的概念，保证共享数据操作的完整性。
+ * 每个对象都对应于一个可称为“互斥锁”的标记，这个标记保证在任一时刻只能有一个线程访问该对象
+ *
+ * 关键字synchronized用来与对象的互斥锁联系。当某个对象用synchronized修饰时，表明该对象在任一时刻只能有一个线程访问
+ * 当synchronized修饰方法的时候，只是锁定了该同步方法体里面的执行逻辑，其他线程还是可以访问其他未锁定的方法的
  */
 public class TestSync implements Runnable {
     private Timer timer = new Timer();
