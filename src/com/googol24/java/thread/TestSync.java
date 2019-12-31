@@ -7,7 +7,9 @@ package com.googol24.java.thread;
  * 每个对象都对应于一个可称为“互斥锁”的标记，这个标记保证在任一时刻只能有一个线程访问该对象
  *
  * 关键字synchronized用来与对象的互斥锁联系。当某个对象用synchronized修饰时，表明该对象在任一时刻只能有一个线程访问
- * 当synchronized修饰方法的时候，只是锁定了该同步方法体里面的执行逻辑，其他线程还是可以访问其他未锁定的方法的
+ * 当synchronized修饰某个方法的时候，某个线程在执行这个方法体时，其他线程还是可以访问其他未锁定的方法的
+ *      -> 注意：synchronized修饰方法时锁定的是调用该方法的对象，即如果一个对象中有两个方法同时被synchronized，则同一个对象，调用这两个方法时，同一时刻只能执行一个
+ *      -> 注意：调用synchronized方法的对象可以同时调用未被synchronized修饰的方法
  */
 public class TestSync implements Runnable {
     private Timer timer = new Timer();
