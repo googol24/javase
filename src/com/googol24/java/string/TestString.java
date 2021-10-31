@@ -91,6 +91,15 @@ public class TestString {
             System.out.print(si + " ");
         }
         System.out.println();
+
+        // 字符串折叠测试
+        String str1 = "1234";
+        String str2 = new String("1234");
+        String str3 = "12" + "34"; // 字符串折叠
+        System.out.println("str1 == str2 ? " + (str1 == str2));
+        System.out.println("str1.equals(str2) ? " + (str1.equals(str2)));
+        System.out.println("str1 == str3 ? " + (str1 == str3));
+        System.out.println("str1.equals(str3) ? " + str1.equals(str3));
     }
 }
 
